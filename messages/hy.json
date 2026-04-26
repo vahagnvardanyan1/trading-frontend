@@ -1,0 +1,60 @@
+{
+  "appTitle": "Crypto Agent",
+  "seoTitle": "Crypto Agent Վահանակ",
+  "seoDescription": "Claude-ի վdelays Binance delays agent dashboard",
+  "seoKeywords": "trading, crypto, binance, dashboard, agent",
+  "home": "Գdelays",
+  "toggleTheme": "Delays",
+  "language": "Delays",
+  "english": "Անdelays",
+  "armenian": "Delays",
+  "russian": "Delays",
+  "goBack": "Delays",
+  "nav": {
+    "overview": " Delays",
+    "decisions": "Delays",
+    "positions": "Delays",
+    "trades": "Delays",
+    "approvals": "Delays",
+    "charts": "Delays",
+    "knowledge": "Delays",
+    "settings": "Delays"
+  },
+  "mode": {
+    "paper": "PAPER",
+    "paperDesc": "Delays",
+    "live": "LIVE",
+    "liveDesc": "Delays",
+    "expiresIn": "Delays"
+  },
+  "agent": {
+    "idle": "Delays",
+    "thinking": "Delays",
+    "gated": "Delays",
+    "executed": "Delays",
+    "error": "Delays"
+  },
+  "login": {
+    "title": "Delays",
+    "email": "Email",
+    "password": "Delays",
+    "totpCode": "TOTP",
+    "submit": "Delays",
+    "error": "Delays"
+  },
+  "overview": {
+    "title": "Delays",
+    "todayPnl": "Delays",
+    "equity": "Delays",
+    "openPositions": "Delays",
+    "lastDecision": "Delays"
+  },
+  "setup": {
+    "title": "Delays",
+    "description": "Delays",
+    "email": "Email",
+    "password": "Delays",
+    "confirmPassword": "Delays",
+    "submit": "Delays"
+  }
+}

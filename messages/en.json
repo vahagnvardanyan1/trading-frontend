@@ -1,0 +1,59 @@
+{
+  "appTitle": "Crypto Agent",
+  "seoTitle": "Crypto Agent Dashboard",
+  "seoDescription": "Claude-powered Binance swing-trading agent dashboard",
+  "seoKeywords": "trading, crypto, binance, dashboard, agent",
+  "home": "Home",
+  "toggleTheme": "Toggle light/dark mode",
+  "language": "Language",
+  "english": "English",
+  "armenian": "Armenian",
+  "russian": "Russian",
+  "goBack": "Go back",
+  "nav": {
+    "overview": "Overview",
+    "agent": "Agent",
+    "decisions": "Decisions",
+    "positions": "Positions",
+    "trades": "Trades",
+    "binance": "Binance",
+    "settings": "Settings"
+  },
+  "mode": {
+    "paper": "PAPER",
+    "paperDesc": "Simulated funds",
+    "live": "LIVE",
+    "liveDesc": "Real money",
+    "expiresIn": "Expires in"
+  },
+  "agent": {
+    "idle": "Idle",
+    "thinking": "Thinking",
+    "gated": "Gated",
+    "executed": "Executed",
+    "error": "Error"
+  },
+  "login": {
+    "title": "Sign in",
+    "email": "Email",
+    "password": "Password",
+    "totpCode": "TOTP Code",
+    "submit": "Sign in",
+    "error": "Invalid credentials"
+  },
+  "overview": {
+    "title": "Dashboard",
+    "todayPnl": "Today's PnL",
+    "equity": "Equity",
+    "openPositions": "Open Positions",
+    "lastDecision": "Last Decision"
+  },
+  "setup": {
+    "title": "Create Account",
+    "description": "Create your operator account",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "submit": "Create account"
+  }
+}

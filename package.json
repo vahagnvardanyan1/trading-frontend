@@ -1,0 +1,34 @@
+{
+  "name": "trading-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint 'src/**/*.{js,ts,tsx,jsx}' --quiet",
+    "lint-fix": "eslint 'src/**/*.{js,ts,tsx,jsx}' --quiet --fix",
+    "lint-ci": "eslint 'src/**/*.{js,ts,tsx,jsx}' -f json -o eslint-report.json"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "^5.62.0",
+    "next": "16.1.6",
+    "next-intl": "^4.8.2",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "react-markdown": "^10.1.0",
+    "zustand": "^5.0.11"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@typescript-eslint/parser": "^8.55.0",
+    "eslint": "^9",
+    "eslint-config-next": "16.1.6",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.5",
+    "prettier": "^3.8.1",
+    "typescript": "^5"
+  }
+}
