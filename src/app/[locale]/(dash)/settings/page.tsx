@@ -87,10 +87,10 @@ const SettingsPage = () => {
           />
           <Input
             id="cadence"
-            label="Schedule Cadence (hours)"
+            label="Schedule Cadence (minutes)"
             type="number"
             value={settings.scheduleCadenceHours}
-            onChange={(e) => setSettings({ ...settings, scheduleCadenceHours: parseInt(e.target.value) || 1 })}
+            onChange={(e) => setSettings({ ...settings, scheduleCadenceHours: parseInt(e.target.value) || 30 })}
           />
           <Input
             id="equity"

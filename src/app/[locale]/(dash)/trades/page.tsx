@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import { Table } from '@/components/ds/Table';
-import { Pill } from '@/components/ds/Pill';
-import { api } from '@/lib/api';
+import { useEffect, useState } from "react";
+import { Table } from "@/components/ds/Table";
+import { Pill } from "@/components/ds/Pill";
+import { api } from "@/lib/api";
 
 interface Trade {
   id: string;
@@ -22,7 +22,10 @@ const TradesPage = () => {
   const [trades, setTrades] = useState<Trade[]>([]);
 
   useEffect(() => {
-    api.get<Trade[]>('/trades').then(setTrades).catch(() => {});
+    api
+      .get<Trade[]>("/binance-account/trades")
+      .then(setTrades)
+      .catch(() => {});
   }, []);
 
   return (
@@ -52,27 +55,36 @@ const TradesPage = () => {
               <tr key={t.id}>
                 <td style={{ fontWeight: 500 }}>{t.symbol}</td>
                 <td>
-                  <Pill variant={t.side === 'LONG' ? 'success' : 'danger'}>
-                    {t.side === 'LONG' ? 'L' : 'S'}
+                  <Pill variant={t.side === "LONG" ? "success" : "danger"}>
+                    {t.side === "LONG" ? "L" : "S"}
                   </Pill>
                 </td>
                 <td className="num">{t.quantity}</td>
                 <td className="num">{t.entryPrice.toFixed(2)}</td>
-                <td className="num">{t.closePrice?.toFixed(2) ?? '--'}</td>
+                <td className="num">{t.closePrice?.toFixed(2) ?? "--"}</td>
                 <td
                   className="num"
                   style={{
-                    color: (t.realizedPnl ?? 0) > 0 ? 'var(--ds-success)' : (t.realizedPnl ?? 0) < 0 ? 'var(--ds-danger)' : undefined,
+                    color:
+                      (t.realizedPnl ?? 0) > 0
+                        ? "var(--ds-success)"
+                        : (t.realizedPnl ?? 0) < 0
+                          ? "var(--ds-danger)"
+                          : undefined,
                     fontWeight: 500,
                   }}
                 >
-                  {t.realizedPnl != null ? `$${t.realizedPnl.toFixed(2)}` : '--'}
+                  {t.realizedPnl != null
+                    ? `$${t.realizedPnl.toFixed(2)}`
+                    : "--"}
                 </td>
                 <td>
-                  <Pill variant={t.book === 'PAPER' ? 'paper' : 'live'}>{t.book}</Pill>
+                  <Pill variant={t.book === "PAPER" ? "paper" : "live"}>
+                    {t.book}
+                  </Pill>
                 </td>
-                <td className="ds-mono" style={{ fontSize: 'var(--ds-fs-xs)' }}>
-                  {t.closedAt ? new Date(t.closedAt).toLocaleString() : '--'}
+                <td className="ds-mono" style={{ fontSize: "var(--ds-fs-xs)" }}>
+                  {t.closedAt ? new Date(t.closedAt).toLocaleString() : "--"}
                 </td>
               </tr>
             ))}

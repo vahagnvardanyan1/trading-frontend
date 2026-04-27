@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import { Table } from '@/components/ds/Table';
-import { Pill } from '@/components/ds/Pill';
-import { api } from '@/lib/api';
+import { useEffect, useState } from "react";
+import { Table } from "@/components/ds/Table";
+import { Pill } from "@/components/ds/Pill";
+import { api } from "@/lib/api";
 
 interface Position {
   id: string;
@@ -21,7 +21,10 @@ const PositionsPage = () => {
   const [positions, setPositions] = useState<Position[]>([]);
 
   useEffect(() => {
-    api.get<Position[]>('/positions').then(setPositions).catch(() => {});
+    api
+      .get<Position[]>("/binance-account/positions")
+      .then(setPositions)
+      .catch(() => {});
   }, []);
 
   return (
@@ -51,19 +54,21 @@ const PositionsPage = () => {
               <tr key={p.id}>
                 <td style={{ fontWeight: 500 }}>{p.symbol}</td>
                 <td>
-                  <Pill variant={p.side === 'LONG' ? 'success' : 'danger'}>
-                    {p.side === 'LONG' ? 'L' : 'S'}
+                  <Pill variant={p.side === "LONG" ? "success" : "danger"}>
+                    {p.side === "LONG" ? "L" : "S"}
                   </Pill>
                 </td>
                 <td className="num">{p.quantity}</td>
                 <td className="num">{p.entryPrice.toFixed(2)}</td>
-                <td className="num">{p.stopLoss?.toFixed(2) ?? '--'}</td>
-                <td className="num">{p.takeProfit?.toFixed(2) ?? '--'}</td>
-                <td className="ds-mono" style={{ fontSize: 'var(--ds-fs-xs)' }}>
+                <td className="num">{p.stopLoss?.toFixed(2) ?? "--"}</td>
+                <td className="num">{p.takeProfit?.toFixed(2) ?? "--"}</td>
+                <td className="ds-mono" style={{ fontSize: "var(--ds-fs-xs)" }}>
                   {new Date(p.openedAt).toLocaleString()}
                 </td>
                 <td>
-                  <Pill variant={p.book === 'PAPER' ? 'paper' : 'live'}>{p.book}</Pill>
+                  <Pill variant={p.book === "PAPER" ? "paper" : "live"}>
+                    {p.book}
+                  </Pill>
                 </td>
               </tr>
             ))}
