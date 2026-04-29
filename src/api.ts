@@ -19,6 +19,11 @@ export interface RuntimeConfig {
   drawdown_kill_pct: number;
   allowed_pairs: string[];
   min_quote_volume_24h_usd: number;
+  adx_threshold: number;
+  cooldown_hours: number;
+  max_stopouts_per_day: number;
+  low_profit_pairs_threshold: number;
+  correlation_buckets: string[][];
 }
 
 export interface KillSwitchState {
@@ -32,6 +37,10 @@ export interface AgentDecision {
   action: 'opened' | 'closed' | 'updated' | 'cancelled' | 'no_op' | 'halted';
   symbol: string | null;
   reason: string;
+  thesis?: string;
+  counter_thesis?: string;
+  confidence?: number;
+  r_multiple?: number;
 }
 
 export interface AgentRun {

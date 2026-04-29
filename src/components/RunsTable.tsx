@@ -39,7 +39,12 @@ export function RunsTable(): JSX.Element {
                   <td>{r.tool_calls}</td>
                   <td>{(r.duration_ms / 1000).toFixed(1)}s</td>
                   <td style={{ color: 'var(--muted)' }}>
-                    {r.error ?? r.decisions.map((d) => `${d.action}${d.symbol ? ` ${d.symbol}` : ''}: ${d.reason}`).join('  •  ')}
+                    {r.error ?? r.decisions.map((d) => {
+                      let text = `${d.action}${d.symbol ? ` ${d.symbol}` : ''}: ${d.reason}`;
+                      if (d.confidence != null) text += ` [conf:${d.confidence}]`;
+                      if (d.r_multiple != null) text += ` [R:${d.r_multiple > 0 ? '+' : ''}${d.r_multiple.toFixed(1)}]`;
+                      return text;
+                    }).join('  •  ')}
                   </td>
                 </tr>
               ))}

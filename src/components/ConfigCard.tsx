@@ -84,6 +84,50 @@ export function ConfigCard(): JSX.Element {
         />
       </div>
 
+      <div className="field">
+        <label>ADX threshold</label>
+        <input
+          type="number"
+          min={10}
+          max={40}
+          value={draft.adx_threshold}
+          onChange={(e) => update('adx_threshold', Number(e.target.value))}
+        />
+      </div>
+
+      <div className="field">
+        <label>Cooldown after stopout (hours)</label>
+        <input
+          type="number"
+          min={0}
+          max={24}
+          value={draft.cooldown_hours}
+          onChange={(e) => update('cooldown_hours', Number(e.target.value))}
+        />
+      </div>
+
+      <div className="field">
+        <label>Max stopouts per day (halt trigger)</label>
+        <input
+          type="number"
+          min={1}
+          max={10}
+          value={draft.max_stopouts_per_day}
+          onChange={(e) => update('max_stopouts_per_day', Number(e.target.value))}
+        />
+      </div>
+
+      <div className="field">
+        <label>Low-profit pairs threshold (0 = disabled)</label>
+        <input
+          type="number"
+          min={0}
+          max={10}
+          value={draft.low_profit_pairs_threshold}
+          onChange={(e) => update('low_profit_pairs_threshold', Number(e.target.value))}
+        />
+      </div>
+
       <div className="row">
         <button
           className="btn primary"
