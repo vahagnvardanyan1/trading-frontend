@@ -11,8 +11,9 @@ interface Position {
   side: string;
   quantity: number;
   entryPrice: number;
-  stopLoss: number | null;
-  takeProfit: number | null;
+  currentPrice: number;
+  unrealizedPnl: number;
+  totalFees: number;
   book: string;
   openedAt: string;
 }
@@ -42,11 +43,11 @@ const PositionsPage = () => {
               <th>Symbol</th>
               <th>Side</th>
               <th className="num">Qty</th>
-              <th className="num">Entry</th>
-              <th className="num">SL</th>
-              <th className="num">TP</th>
-              <th>Time</th>
-              <th>Book</th>
+              <th className="num">Avg Entry</th>
+              <th className="num">Current</th>
+              <th className="num">Unrealized PnL</th>
+              <th className="num">Fees</th>
+              <th>Since</th>
             </tr>
           </thead>
           <tbody>
@@ -59,16 +60,36 @@ const PositionsPage = () => {
                   </Pill>
                 </td>
                 <td className="num">{p.quantity}</td>
-                <td className="num">{p.entryPrice.toFixed(2)}</td>
-                <td className="num">{p.stopLoss?.toFixed(2) ?? "--"}</td>
-                <td className="num">{p.takeProfit?.toFixed(2) ?? "--"}</td>
+                <td className="num">
+                  {p.entryPrice > 0 ? p.entryPrice.toFixed(2) : "--"}
+                </td>
+                <td className="num">
+                  {p.currentPrice > 0 ? p.currentPrice.toFixed(2) : "--"}
+                </td>
+                <td
+                  className="num"
+                  style={{
+                    color:
+                      p.unrealizedPnl > 0
+                        ? "var(--ds-success)"
+                        : p.unrealizedPnl < 0
+                          ? "var(--ds-danger)"
+                          : undefined,
+                    fontWeight: 500,
+                  }}
+                >
+                  {p.entryPrice > 0
+                    ? `$${p.unrealizedPnl.toFixed(2)}`
+                    : "--"}
+                </td>
+                <td
+                  className="num"
+                  style={{ color: "var(--ds-danger)", fontWeight: 500 }}
+                >
+                  {p.totalFees > 0 ? `$${p.totalFees.toFixed(4)}` : "--"}
+                </td>
                 <td className="ds-mono" style={{ fontSize: "var(--ds-fs-xs)" }}>
                   {new Date(p.openedAt).toLocaleString()}
-                </td>
-                <td>
-                  <Pill variant={p.book === "PAPER" ? "paper" : "live"}>
-                    {p.book}
-                  </Pill>
                 </td>
               </tr>
             ))}
