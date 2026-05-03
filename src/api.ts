@@ -24,6 +24,22 @@ export interface RuntimeConfig {
   max_stopouts_per_day: number;
   low_profit_pairs_threshold: number;
   correlation_buckets: string[][];
+  dca_entries: { symbol: string; quote_amount: number; cron: string }[];
+  dca_max_weekly_equity_pct: number;
+  earn_reserve_amount: number;
+  earn_min_park_amount: number;
+  bear_regime_gate_lookback: number;
+  bear_regime_gate_btc_threshold_pct: number;
+  mean_reversion_rsi_entry: number;
+  mean_reversion_rsi_exit: number;
+  mean_reversion_atr_stop_multiplier: number;
+  mean_reversion_time_stop_hours: number;
+  grid_count: number;
+  grid_range_lookback_days: number;
+  grid_range_safety_margin_atr: number;
+  grid_total_notional_pct: number;
+  grid_range_break_atr_multiplier: number;
+  strategy_kill_switches: Record<string, { active: boolean; reason: string }>;
 }
 
 export interface KillSwitchState {
@@ -34,9 +50,10 @@ export interface KillSwitchState {
 
 export interface AgentDecision {
   ts_iso: string;
-  action: 'opened' | 'closed' | 'updated' | 'cancelled' | 'no_op' | 'halted';
+  action: 'opened' | 'closed' | 'updated' | 'cancelled' | 'no_op' | 'halted' | 'dca_buy';
   symbol: string | null;
   reason: string;
+  strategy?: 'breakout' | 'mean_reversion' | 'grid' | 'dca' | 'system';
   thesis?: string;
   counter_thesis?: string;
   confidence?: number;
@@ -56,10 +73,17 @@ export interface AgentRun {
 }
 
 export const accountApi = {
-  /** Used only to know mode + kill_switch status; not a wallet view. */
   state: () =>
     api
-      .get<{ mode: TradingMode; kill_switch: KillSwitchState }>('/account/state')
+      .get<{
+        mode: TradingMode;
+        equity_usdt: number;
+        free_usdt: number;
+        earn_balance_usdt: number;
+        daily_pnl_pct: number;
+        recent_no_op_bear_streak: number;
+        kill_switch: KillSwitchState;
+      }>('/account/state')
       .then((r) => r.data),
   setKillSwitch: (active: boolean, reason?: string) =>
     api.post('/account/kill-switch', { active, reason }).then((r) => r.data),
